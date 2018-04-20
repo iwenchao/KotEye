@@ -28,6 +28,7 @@ ext {
     ]
 
     leakcanary = "1.5.4"
+    logger = "2.2.0"
 
 
     supportLibs = supportDeps.values()
