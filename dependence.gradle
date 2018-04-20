@@ -1,8 +1,27 @@
-ext{
+ext {
     compileSdkVersion = 26
     applicationId = "com.iwenchaos.koteye"
     minSdkVersion = 15
     targetSdkVersion = 26
     versionCode = 1
     versionName = "1.0"
+
+    dependVersion = [
+            androidSupportSdkVersion: "26.0.2",
+            retrofitSdkVersion      : "2.3.0",
+            glideSdkVersion         : "4.0.0",
+            rxJava                  : "2.1.5",
+            rxAndroid               : "2.0.1"
+    ]
+
+    supportDeps = [
+            appcompatv7: "com.android.support:appcompat-v7:$dependVersion.androidSupportSdkVersion",
+            cardView   : "com.android.support:cardview-v7:$dependVersion.androidSupportSdkVersion"
+    ]
+
+
+
+
+    supportLibs = supportDeps.values()
+
 }
