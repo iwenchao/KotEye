@@ -27,6 +27,8 @@ ext {
 
     ]
 
+    leakcanary = "1.5.4"
+
 
     supportLibs = supportDeps.values()
     unitTest = unitTest.values()

@@ -1,6 +1,8 @@
 package com.iwenchaos.koteye.base
 
 import android.app.Application
+import com.squareup.leakcanary.LeakCanary
+import com.squareup.leakcanary.RefWatcher
 
 /**
  * Created by chaos
@@ -9,9 +11,21 @@ import android.app.Application
  */
 class EyeApplication : Application() {
 
+    private var refWatcher: RefWatcher? = null
 
     override fun onCreate() {
         super.onCreate()
-
+        refWatcher = leackCanary()
     }
+
+    private fun leackCanary(): RefWatcher? =
+            if (LeakCanary.isInAnalyzerProcess(this)) {
+                RefWatcher.DISABLED
+            } else
+                LeakCanary.install(this)
+
+
+
+
+
 }
