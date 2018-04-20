@@ -20,8 +20,14 @@ ext {
     ]
 
 
+    unitTest = [
+            junit   : "junit:junit:4.12",
+            runner  : "com.android.support.test:runner:1.0.1",
+            expresso: "com.android.support.test.espresso:espresso-core:3.0.1"
+
+    ]
 
 
     supportLibs = supportDeps.values()
-
+    unitTest = unitTest.values()
 }
