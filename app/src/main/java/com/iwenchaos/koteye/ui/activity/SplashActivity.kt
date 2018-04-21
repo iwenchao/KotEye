@@ -1,6 +1,6 @@
 package com.iwenchaos.koteye.ui.activity
 
-import android.os.Bundle
+import com.iwenchaos.koteye.R
 import com.iwenchaos.koteye.base.BaseActivity
 
 /**
@@ -11,7 +11,15 @@ import com.iwenchaos.koteye.base.BaseActivity
 class SplashActivity : BaseActivity() {
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    /**
+     * 布局
+     */
+    override fun layoutId(): Int = R.layout.activity_splash
+
+    override fun initUi() {
     }
+
+    override fun loadDta() {
+    }
+
 }
