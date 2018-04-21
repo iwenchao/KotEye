@@ -42,8 +42,8 @@ class EyeApplication(application: Application,
 
     override fun onCreate() {
         super.onCreate()
-        refWatcher = leackCanary()
         logger()
+        refWatcher = leackCanary()
         application.registerActivityLifecycleCallbacks(activityCallback)
     }
 
