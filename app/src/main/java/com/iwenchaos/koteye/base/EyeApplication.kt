@@ -13,10 +13,8 @@ import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
-import com.tencent.tinker.anno.DefaultLifeCycle
 import com.tencent.tinker.lib.tinker.TinkerInstaller
 import com.tencent.tinker.loader.app.DefaultApplicationLike
-import com.tencent.tinker.loader.shareutil.ShareConstants
 
 
 
@@ -26,9 +24,7 @@ import com.tencent.tinker.loader.shareutil.ShareConstants
  * on 2018/4/20. 10:30
  * 文件描述：
  */
-//这个构造器显得沉重，需要以次构造器继承的方式
-@DefaultLifeCycle(application = "com.iwenchaos.koteye.base.EyeTinkerApplication",
-        flags = ShareConstants.TINKER_ENABLE_ALL)
+
 class EyeApplication : DefaultApplicationLike {
 
     private var refWatcher: RefWatcher? = null

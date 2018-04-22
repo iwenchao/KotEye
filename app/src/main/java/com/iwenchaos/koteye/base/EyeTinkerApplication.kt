@@ -7,7 +7,7 @@ import com.tencent.tinker.loader.shareutil.ShareConstants
 /**
  * Created by chaos
  * on 2018/4/22. 20:28
- * 文件描述：
+ * 文件描述：在kotlin中 tinker的注解生成器貌似不管用，需要手动创建
  */
 class EyeTinkerApplication : TinkerApplication {
     constructor() : super(

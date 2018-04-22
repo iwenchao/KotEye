@@ -89,7 +89,7 @@ dependencies {
     //log lib
     implementation "com.orhanobut:logger:$rootProject.ext.logger"
     //可选，用于生成application类
-    compileOnly "com.tencent.tinker:tinker-android-anno:$rootProject.ext.tinker_version"
+//    compileOnly "com.tencent.tinker:tinker-android-anno:$rootProject.ext.tinker_version"
     //tinker核心lib
     //noinspection GradleDependency
     implementation "com.tencent.tinker:tinker-android-lib:$rootProject.ext.tinker_version"
