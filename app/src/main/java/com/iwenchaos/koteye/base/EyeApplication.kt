@@ -14,8 +14,12 @@ import com.orhanobut.logger.PrettyFormatStrategy
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 import com.tencent.tinker.anno.DefaultLifeCycle
+import com.tencent.tinker.lib.tinker.TinkerInstaller
 import com.tencent.tinker.loader.app.DefaultApplicationLike
 import com.tencent.tinker.loader.shareutil.ShareConstants
+
+
+
 
 /**
  * Created by chaos
@@ -23,31 +27,42 @@ import com.tencent.tinker.loader.shareutil.ShareConstants
  * 文件描述：
  */
 //这个构造器显得沉重，需要以次构造器继承的方式
-@DefaultLifeCycle(application = "com.iwenchaos.koteye.base.EyeApplication", flags = ShareConstants.TINKER_ENABLE_ALL)
-class EyeApplication(application: Application,
-                     tinkerFlags: Int,
-                     tinkerLoadVerifyFlag: Boolean,
-                     applicationStartElapsedTime: Long,
-                     applicationStartMillisTime: Long,
-                     tinkerResultIntent: Intent
-) : DefaultApplicationLike(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime,
-        applicationStartMillisTime, tinkerResultIntent) {
+@DefaultLifeCycle(application = "com.iwenchaos.koteye.base.EyeTinkerApplication",
+        flags = ShareConstants.TINKER_ENABLE_ALL)
+class EyeApplication : DefaultApplicationLike {
 
     private var refWatcher: RefWatcher? = null
 
+
+    constructor(application: Application,
+                tinkerFlags: Int,
+                tinkerLoadVerifyFlag: Boolean,
+                applicationStartElapsedTime: Long,
+                applicationStartMillisTime: Long,
+                tinkerResultIntent: Intent
+    ) : super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime,
+            applicationStartMillisTime, tinkerResultIntent)
+
+
     override fun onBaseContextAttached(base: Context?) {
         super.onBaseContextAttached(base)
+        //you must install multiDex whatever tinker is installed!
         MultiDex.install(base)
+        TinkerInstaller.install(this)
+//        TinkerInstaller.install(this, DefaultLoadReporter(application), DefaultPatchReporter(application),
+//                DefaultPatchListener(application), QuickResultService::class.java, UpgradePatch())
+//        val tinker = Tinker.with(application)
+
     }
 
     override fun onCreate() {
         super.onCreate()
         logger()
-        refWatcher = leackCanary()
+        refWatcher = leakCanary()
         application.registerActivityLifecycleCallbacks(activityCallback)
     }
 
-    private fun leackCanary(): RefWatcher? =
+    private fun leakCanary(): RefWatcher? =
             if (LeakCanary.isInAnalyzerProcess(application)) {
                 RefWatcher.DISABLED
             } else
@@ -67,6 +82,7 @@ class EyeApplication(application: Application,
             }
         })
     }
+
 
     private val activityCallback = object : Application.ActivityLifecycleCallbacks {
         override fun onActivityPaused(activity: Activity?) {

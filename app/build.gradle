@@ -8,7 +8,6 @@ apply plugin: 'kotlin-kapt'// kapt 编译器插件支持注解处理器,你可�
 
 apply plugin: 'com.tencent.tinker.patch'//tinker插件
 
-def javaVersion = JavaVersion.VERSION_1_8
 def bakPath = file("${buildDir}/bakApk/")
 
 
@@ -28,10 +27,6 @@ android {
         buildConfigField "String", "TINKER_ID", "\"${getTinkerIdValue()}\""
         buildConfigField "String", "PLATFORM", "\"all\""
 
-        compileOptions {
-            sourceCompatibility javaVersion
-            targetCompatibility javaVersion
-        }
 
         dexOptions {
             jumboMode = true
@@ -40,11 +35,24 @@ android {
 
         signingConfigs {
             release {
-
+                try {
+                    storeFile file("./keystore/release.keystore")
+                    storePassword "testres"
+                    keyAlias "testres"
+                    keyPassword "testres"
+                } catch (ex) {
+                    throw new InvalidUserDataException(ex.toString())
+                }
             }
 
             debug {
-
+                storeFile file("./keystore/debug.keystore")
+            }
+        }
+        //解决
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
             }
         }
 
@@ -57,8 +65,17 @@ android {
         }
 
         release {
+            debuggable false
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 自定义输出配置
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "koteye_v${variant.versionName}_${variant.name}.apk"
         }
     }
 }
@@ -66,20 +83,24 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlin_version}"
+    implementation rootProject.ext.unitTest
     //android support library
     implementation rootProject.ext.supportLibs
     //log lib
     implementation "com.orhanobut:logger:$rootProject.ext.logger"
     //可选，用于生成application类
-    provided "com.tencent.tinker:tinker-android-anno:$rootProject.ext.tinker_version"
+    compileOnly "com.tencent.tinker:tinker-android-anno:$rootProject.ext.tinker_version"
     //tinker核心lib
+    //noinspection GradleDependency
     implementation "com.tencent.tinker:tinker-android-lib:$rootProject.ext.tinker_version"
     //分包
-    compile "com.android.support:multidex:$rootProject.ext.multiDex"
+    //noinspection GradleDependency
+    implementation "com.android.support:multidex:$rootProject.ext.multiDex"
+
 
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary"
-    implementation rootProject.ext.unitTest
+
 }
 ext {
     //for some reason, you may want to ignore tinkerBuild, such as instant run debug build?
