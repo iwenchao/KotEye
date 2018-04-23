@@ -31,6 +31,11 @@ android {
         dexOptions {
             jumboMode = true
         }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
 
 
         signingConfigs {
@@ -72,12 +77,12 @@ android {
         }
     }
 
-    // 自定义输出配置
-    android.applicationVariants.all { variant ->
-        variant.outputs.all {
-            outputFileName = "koteye_v${variant.versionName}_${variant.name}.apk"
-        }
-    }
+//    // 自定义输出配置
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "koteye_v${variant.versionName}_${variant.name}.apk"
+//        }
+//    }
 }
 
 dependencies {
@@ -108,14 +113,14 @@ ext {
 
     //for normal build
     //old apk file to build patch apk
-    tinkerOldApkPath = "${bakPath}/app-debug-1018-17-32-47.apk"
+    tinkerOldApkPath = "${bakPath}/${getBaseApkPrefix()}.apk"
     //proguard mapping file to build patch apk
-    tinkerApplyMappingPath = "${bakPath}/app-debug-1018-17-32-47-mapping.txt"
+    tinkerApplyMappingPath = "${bakPath}/${getBaseApkPrefix()}-mapping.txt"
     //resource R.txt to build patch apk, must input if there is resource changed
-    tinkerApplyResourcePath = "${bakPath}/app-debug-1018-17-32-47-R.txt"
+    tinkerApplyResourcePath = "${bakPath}/${getBaseApkPrefix()}-R.txt"
 
     //only use for build all flavor, if not, just ignore this field
-    tinkerBuildFlavorDirectory = "${bakPath}/app-1018-17-32-47"
+//    tinkerBuildFlavorDirectory = "${bakPath}/app-1018-17-32-47"
 }
 
 def getTinkerIdValue() {
@@ -125,9 +130,11 @@ def getTinkerIdValue() {
 def gitSha() {
     try {
         String gitRev = 'git rev-parse --short HEAD'.execute(null, project.rootDir).text.trim()
+
         if (gitRev == null) {
             throw new GradleException("can't get git rev, you should add git to system path or just input test value, such as 'testTinkerId'")
         }
+        print("gitShaId: "+gitRev)
         return gitRev
     } catch (Exception e) {
         throw new GradleException("can't get git rev, you should add git to system path or just input test value, such as 'testTinkerId'")
@@ -149,6 +156,9 @@ def getApplyResourceMappingPath() {
 
 def buildWithTinker() {
     return hasProperty("TINKER_ENABLE") ? Boolean.parseBoolean(TINKER_ENABLE) : ext.tinkerEnabled
+}
+def getBaseApkPrefix(){
+    return hasProperty("BASE_APK_PREFIX") ? BASE_APK_PREFIX : "app-debug-0423-19"
 }
 
 def getTinkerBuildFlavorDirectory() {
@@ -366,7 +376,7 @@ if (buildWithTinker()) {
         flavors.add(flavor.name)
     }
     boolean hasFlavors = flavors.size() > 0
-    def date = new Date().format("MMdd-HH-mm-ss")
+    def date = new Date().format("MMdd-HH")
 
     /**
      * bak apk and mapping
