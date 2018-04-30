@@ -1,4 +1,4 @@
-package com.iwenchaos.koteye.base.mvp
+package com.iwenchaos.koteye.base
 
 /**
  * Created by chaos

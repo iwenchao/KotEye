@@ -1,4 +1,4 @@
-package com.iwenchaos.koteye.base.mvp
+package com.iwenchaos.koteye.base
 
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

@@ -10,7 +10,7 @@ import com.iwenchaos.koteye.widget.MultipleStatusView
  * on 2018/4/20. 10:56
  * 文件描述：
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), IView {
 
     var layoutStatusView: MultipleStatusView? = null
 
@@ -39,6 +39,14 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     open val retryClickListener = View.OnClickListener {
         loadDta()
+    }
+
+    override fun showLoading() {
+
+    }
+
+    override fun closeLoading() {
+
     }
 
 
