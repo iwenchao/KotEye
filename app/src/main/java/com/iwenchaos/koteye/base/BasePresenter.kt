@@ -8,7 +8,7 @@ import io.reactivex.disposables.Disposable
  * on 2018/4/30. 12:53
  * 文件描述：
  */
-open abstract class BasePresenter<V : IView> : IPresenter<V> {
+abstract class BasePresenter<V : IView> : IPresenter<V> {
     //ui
     var view: V? = null
         private set

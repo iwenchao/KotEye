@@ -25,29 +25,24 @@ import kotlin.properties.Delegates
  * 文件描述：
  */
 
-class EyeApplication : DefaultApplicationLike {
+class EyeApplication constructor(application: Application,
+                                 tinkerFlags: Int,
+                                 tinkerLoadVerifyFlag: Boolean,
+                                 applicationStartElapsedTime: Long,
+                                 applicationStartMillisTime: Long,
+                                 tinkerResultIntent: Intent
+) : DefaultApplicationLike(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime,
+        applicationStartMillisTime, tinkerResultIntent) {
     //leak canary
-    private var refWatcher: RefWatcher? = null
+    var refWatcher: RefWatcher? = null
 
     companion object {
 
         var context: Context by Delegates.notNull()
             private set
 
-        fun getRefWatcher(context: Context): RefWatcher? {
-            val eyeApplication = context.applicationContext as EyeApplication
-            return eyeApplication.refWatcher
-        }
-    }
 
-    constructor(application: Application,
-                tinkerFlags: Int,
-                tinkerLoadVerifyFlag: Boolean,
-                applicationStartElapsedTime: Long,
-                applicationStartMillisTime: Long,
-                tinkerResultIntent: Intent
-    ) : super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime,
-            applicationStartMillisTime, tinkerResultIntent)
+    }
 
 
     override fun onBaseContextAttached(base: Context?) {

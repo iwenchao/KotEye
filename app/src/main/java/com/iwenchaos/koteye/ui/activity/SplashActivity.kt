@@ -64,10 +64,13 @@ class SplashActivity : BaseActivity() {
 
     override fun loadDta() {}
 
+
+
     private fun toMain() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+        Intent(this, MainActivity::class.java).let {
+            startActivity(it)
+            finish()
+        }
     }
 
     private fun checkPermission() {
@@ -82,6 +85,7 @@ class SplashActivity : BaseActivity() {
                 .checkMutiPermission(object : PermissionCallback {
                     override fun onFinish() {
                         toast(getString(R.string.init_ok))
+                        layout_splash.startAnimation(alphaAnimation)
                     }
 
                     override fun onDeny(permission: String?, position: Int) {

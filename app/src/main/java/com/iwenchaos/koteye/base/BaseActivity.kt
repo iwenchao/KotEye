@@ -52,6 +52,6 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     override fun onDestroy() {
         super.onDestroy()
-        EyeApplication.getRefWatcher(this)?.watch(this)
+//        EyeApplication.getRefWatcher(this)?.watch(this)
     }
 }
