@@ -105,7 +105,8 @@ dependencies {
     implementation rootProject.ext.networkLibs
     // RxJava2
     implementation rootProject.ext.rxJavaLibs
-
+    //运行时权限
+    implementation "me.weyye.hipermission:library:${rootProject.ext.permission}"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary"
 

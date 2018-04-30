@@ -42,6 +42,7 @@ ext {
     leakcanary = "1.5.4"
     logger = "2.2.0"
     multiDex = "1.0.1"
+    permission =  "1.0.7"
 
 
 
