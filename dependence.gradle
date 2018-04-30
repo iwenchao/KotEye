@@ -26,6 +26,18 @@ ext {
             expresso: "com.android.support.test.espresso:espresso-core:3.0.1"
 
     ]
+    rxJava = [
+            rxJava                : "io.reactivex.rxjava2:rxjava:$dependVersion.rxJava",
+            rxAndroid             : "io.reactivex.rxjava2:rxandroid:$dependVersion.rxAndroid"
+    ]
+
+    retrofit = [
+            //------ retrofit和RxJava ---------
+            retrofit                : "com.squareup.retrofit2:retrofit:$dependVersion.retrofitSdkVersion",
+            retrofitConverterGson   : "com.squareup.retrofit2:converter-gson:$dependVersion.retrofitSdkVersion",
+            retrofitAdapterRxjava2  : "com.squareup.retrofit2:adapter-rxjava2:$dependVersion.retrofitSdkVersion",
+            okhttp3LoggerInterceptor: 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    ]
 
     leakcanary = "1.5.4"
     logger = "2.2.0"
@@ -36,5 +48,8 @@ ext {
 
 
     supportLibs = supportDeps.values()
+    networkLibs = retrofit.values()
+    rxJavaLibs = rxJava.values()
     unitTest = unitTest.values()
+
 }

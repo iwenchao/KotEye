@@ -101,7 +101,10 @@ dependencies {
     //分包
     //noinspection GradleDependency
     implementation "com.android.support:multidex:$rootProject.ext.multiDex"
-
+    // 网络请求库
+    implementation rootProject.ext.networkLibs
+    // RxJava2
+    implementation rootProject.ext.rxJavaLibs
 
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary"
@@ -134,7 +137,7 @@ def gitSha() {
         if (gitRev == null) {
             throw new GradleException("can't get git rev, you should add git to system path or just input test value, such as 'testTinkerId'")
         }
-        print("gitShaId: "+gitRev)
+        print("gitShaId: " + gitRev)
         return gitRev
     } catch (Exception e) {
         throw new GradleException("can't get git rev, you should add git to system path or just input test value, such as 'testTinkerId'")
@@ -157,7 +160,8 @@ def getApplyResourceMappingPath() {
 def buildWithTinker() {
     return hasProperty("TINKER_ENABLE") ? Boolean.parseBoolean(TINKER_ENABLE) : ext.tinkerEnabled
 }
-def getBaseApkPrefix(){
+
+def getBaseApkPrefix() {
     return hasProperty("BASE_APK_PREFIX") ? BASE_APK_PREFIX : "app-debug-0423-19"
 }
 
