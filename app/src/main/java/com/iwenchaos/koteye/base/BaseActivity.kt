@@ -37,7 +37,13 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 重试监听
      */
-    private val retryClickListener = View.OnClickListener {
+    open val retryClickListener = View.OnClickListener {
         loadDta()
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EyeApplication.getRefWatcher(this)?.watch(this)
     }
 }
