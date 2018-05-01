@@ -29,7 +29,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.container ?: let {
-            this.container =  inflater.inflate(getLayoutId(),container,false)
+            this.container = inflater.inflate(getLayoutId(), container, false)
         }
         return this.container
     }
@@ -37,7 +37,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        if(isVisibleToUser){
+        if (isVisibleToUser) {
             lazyLoadDtaIfPrepared()
         }
     }
@@ -45,16 +45,24 @@ abstract class BaseFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUi()
-        isUiPrepared  = true
+        isUiPrepared = true
         lazyLoadDtaIfPrepared()
         layoutStatusView?.setOnClickListener { lazyLoad() }
     }
 
-    private fun lazyLoadDtaIfPrepared(){
-        if(userVisibleHint && isUiPrepared && !isDataLoaded){
+    private fun lazyLoadDtaIfPrepared() {
+        if (userVisibleHint && isUiPrepared && !isDataLoaded) {
             lazyLoad()
             isDataLoaded = true
         }
+    }
+
+    fun showLoading() {
+
+    }
+
+    fun closeLoading() {
+
     }
 
     override fun onDestroy() {

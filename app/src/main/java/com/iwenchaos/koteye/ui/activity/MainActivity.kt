@@ -18,7 +18,7 @@ class MainActivity : BaseActivity() {
 
     //tab相关
     private val mTabTitles = arrayOf("每日精选", "发现", "热门", "我的")
-    private val mUnselectIconIds = intArrayOf(R.mipmap.ic_home_normal, R.mipmap.ic_discovery_normal,
+    private val mUnSelectIconIds = intArrayOf(R.mipmap.ic_home_normal, R.mipmap.ic_discovery_normal,
             R.mipmap.ic_hot_normal, R.mipmap.ic_mine_normal)
     private val mSelectedIconIds = intArrayOf(R.mipmap.ic_home_selected, R.mipmap.ic_discovery_selected,
             R.mipmap.ic_hot_selected, R.mipmap.ic_mine_selected)
@@ -42,7 +42,7 @@ class MainActivity : BaseActivity() {
     private fun initTab() {
 
         (0 until mTabTitles.size).mapTo(mTabs) {
-            TabEntity(mTabTitles[it], mUnselectIconIds[it], mSelectedIconIds[it])
+            TabEntity(mTabTitles[it], mUnSelectIconIds[it], mSelectedIconIds[it])
         }
         tab_layout.setTabData(mTabs)
         tab_layout.currentTab = mTabIndex

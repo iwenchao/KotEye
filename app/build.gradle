@@ -114,6 +114,10 @@ dependencies {
     //模糊透明 View
     implementation "com.github.mmin18:realtimeblurview:${rootProject.ext.realtimeblurview}"
 
+    //smartRefreshLayout 下拉刷新
+    implementation "com.scwang.smartrefresh:SmartRefreshLayout:${rootProject.ext.smartrefresh}"
+    implementation "com.scwang.smartrefresh:SmartRefreshHeader:${rootProject.ext.smartrefresh}"
+
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary"
 
 }
