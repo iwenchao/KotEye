@@ -117,6 +117,8 @@ dependencies {
     //smartRefreshLayout 下拉刷新
     implementation "com.scwang.smartrefresh:SmartRefreshLayout:${rootProject.ext.smartrefresh}"
     implementation "com.scwang.smartrefresh:SmartRefreshHeader:${rootProject.ext.smartrefresh}"
+    //Banner
+    implementation "cn.bingoogolapple:bga-banner:${rootProject.ext.banner}@aar"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary"
 

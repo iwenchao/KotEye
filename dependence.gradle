@@ -47,6 +47,7 @@ ext {
     permission = "1.0.7"
     realtimeblurview = "1.1.0"
     smartrefresh = "1.0.3"
+    banner ="2.1.8"
 
 
 
