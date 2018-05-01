@@ -41,6 +41,8 @@ ext {
             okhttp3LoggerInterceptor: 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     ]
 
+
+
     leakcanary = "1.5.4"
     logger = "2.2.0"
     multiDex = "1.0.1"
@@ -57,5 +59,6 @@ ext {
     networkLibs = retrofit.values()
     rxJavaLibs = rxJava.values()
     unitTest = unitTest.values()
+
 
 }

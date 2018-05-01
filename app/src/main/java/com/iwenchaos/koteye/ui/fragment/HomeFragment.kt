@@ -6,6 +6,7 @@ import com.iwenchaos.koteye.R
 import com.iwenchaos.koteye.base.BaseFragment
 import com.iwenchaos.koteye.mvp.contract.HomeContract
 import com.iwenchaos.koteye.mvp.presenter.HomePresenter
+import com.iwenchaos.koteye.ui.adapter.HomeAdapter
 import com.scwang.smartrefresh.header.MaterialHeader
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.SimpleDateFormat
@@ -23,6 +24,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     private var isRefresh = false
     private var page = 1
     private var localHeader: MaterialHeader? = null
+    private var homeAdapter:HomeAdapter? = null
     private val mPresenter by lazy { HomePresenter() }
 
     companion object {
@@ -78,7 +80,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
                 super.onScrolled(recyclerView, dx, dy)
                 val curVisibleItemPos= linearLayoutManager.findFirstVisibleItemPosition()
                 if (curVisibleItemPos == 0){//位于顶部，则透明显示
-                    home_toolbar.setBackgroundColor(activity.resources.getColor(R.color.color_translucent))
+                    home_toolbar.setBackgroundColor(activity?.resources?.getColor(R.color.color_translucent)!!)
                     iv_search.setImageResource(R.mipmap.ic_action_search_white)
                     tv_header_title.text = ""
                 }else{
@@ -90,5 +92,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     }
 
     override fun lazyLoad() {
+
+
     }
 }

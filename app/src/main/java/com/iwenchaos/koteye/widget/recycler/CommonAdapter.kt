@@ -10,10 +10,10 @@ import android.view.ViewGroup
  * on 2018/5/1. 11:14
  * 文件描述：
  */
-abstract class CommonAdapter<T>(var context: Context,
+abstract class CommonAdapter<T>(open var context: Context,
                                 var list: ArrayList<T>,
                                 var layoutId: Int) : RecyclerView.Adapter<ViewHolder>() {
-    private val inflater by lazy {
+    val inflater by lazy {
         LayoutInflater.from(context)
     }
 
@@ -41,7 +41,7 @@ abstract class CommonAdapter<T>(var context: Context,
     }
 
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         bindData(holder, list[position], position)
 
         itemClickListener?.let {
@@ -57,5 +57,5 @@ abstract class CommonAdapter<T>(var context: Context,
     }
 
 
-    abstract fun bindData(holder: ViewHolder?, data: T, position: Int)
+    abstract fun bindData(holder: ViewHolder, data: T, position: Int)
 }
