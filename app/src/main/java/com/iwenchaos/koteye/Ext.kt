@@ -14,3 +14,4 @@ val EYE_APPLICATION: String = "EyeApplication"
 fun Context.toast(content:String) {
     Toast.makeText(EyeApplication.context,content,Toast.LENGTH_SHORT).show()
 }
+

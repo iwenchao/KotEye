@@ -17,9 +17,16 @@ interface HomeContract {
 
     interface Presenter : IPresenter<View> {
 
+        fun loadHomeDta(page:Int?)
+
+        fun loadMoreDta()
+
     }
 
     interface Model : IModel {
+
+        fun loadHomeDta(page:Int?)
+        fun loadMoreDta()
 
     }
 
