@@ -27,8 +27,8 @@ ext {
 
     ]
     rxJava = [
-            rxJava                : "io.reactivex.rxjava2:rxjava:$dependVersion.rxJava",
-            rxAndroid             : "io.reactivex.rxjava2:rxandroid:$dependVersion.rxAndroid"
+            rxJava   : "io.reactivex.rxjava2:rxjava:$dependVersion.rxJava",
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:$dependVersion.rxAndroid"
     ]
 
     retrofit = [
@@ -42,7 +42,8 @@ ext {
     leakcanary = "1.5.4"
     logger = "2.2.0"
     multiDex = "1.0.1"
-    permission =  "1.0.7"
+    permission = "1.0.7"
+    realtimeblurview = "1.1.0"
 
 
 
