@@ -1,5 +1,6 @@
 package com.iwenchaos.koteye.ui.fragment
 
+import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.iwenchaos.koteye.R
@@ -24,7 +25,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     private var isRefresh = false
     private var page = 1
     private var localHeader: MaterialHeader? = null
-    private var homeAdapter:HomeAdapter? = null
+    private var homeAdapter: HomeAdapter? = null
     private val mPresenter by lazy { HomePresenter() }
 
     companion object {
@@ -59,16 +60,16 @@ class HomeFragment : BaseFragment(), HomeContract.View {
             }
             setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
         }
-        home_recycler.addOnScrollListener(object :RecyclerView.OnScrollListener(){
+        home_recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (newState  == RecyclerView.SCROLL_STATE_IDLE){
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     val childCount = home_recycler.childCount
                     val itemCount = home_recycler.layoutManager.itemCount
                     val firstVisiblePos = (home_recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-                    if (firstVisiblePos + childCount == itemCount){
-                        if (!isLoadingMore){
+                    if (firstVisiblePos + childCount == itemCount) {
+                        if (!isLoadingMore) {
                             isLoadingMore = true
                             mPresenter.loadMoreDta()
                         }
@@ -78,21 +79,27 @@ class HomeFragment : BaseFragment(), HomeContract.View {
 
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val curVisibleItemPos= linearLayoutManager.findFirstVisibleItemPosition()
-                if (curVisibleItemPos == 0){//位于顶部，则透明显示
+                val curVisibleItemPos = linearLayoutManager.findFirstVisibleItemPosition()
+                if (curVisibleItemPos == 0) {//位于顶部，则透明显示
                     home_toolbar.setBackgroundColor(activity?.resources?.getColor(R.color.color_translucent)!!)
                     iv_search.setImageResource(R.mipmap.ic_action_search_white)
                     tv_header_title.text = ""
-                }else{
+                } else {
 
                 }
             }
         })
 
+        homeAdapter = HomeAdapter(activity)
+        home_recycler.run {
+            layoutManager = linearLayoutManager
+            adapter = homeAdapter
+            itemAnimator = DefaultItemAnimator()
+        }
     }
 
     override fun lazyLoad() {
-
+        mPresenter.loadHomeDta(page)
 
     }
 }

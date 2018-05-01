@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Build
 import android.support.annotation.RequiresApi
 import android.support.v4.app.ActivityCompat
+import android.support.v4.app.FragmentActivity
 import android.util.Pair
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +46,9 @@ class HomeAdapter(override var context: Context, list: ArrayList<HomeInfo.Issue.
         private val ITEM_TYPE_CONTENT = 3
     }
 
+    constructor(context: FragmentActivity?):this(context as Context,ArrayList<HomeInfo.Issue.Item>()){
+
+    }
 
     fun addData(itemList: ArrayList<HomeInfo.Issue.Item>) {
         this.list.addAll(itemList)

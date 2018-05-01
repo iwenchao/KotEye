@@ -10,16 +10,19 @@ import com.iwenchaos.koteye.mvp.model.HomeModel
  * 文件描述：
  */
 class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter {
-    override fun loadMoreDta() {
 
-    }
 
 
     private val homeModel: HomeModel by lazy {
         HomeModel()
     }
 
+
     override fun loadHomeDta(page:Int?) {
+
+    }
+
+    override fun loadMoreDta() {
 
     }
 
