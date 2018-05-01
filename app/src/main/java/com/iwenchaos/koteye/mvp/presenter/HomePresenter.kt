@@ -19,7 +19,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
 
 
     override fun loadHomeDta(page:Int?) {
-
+        homeModel.loadHomeDta(page)
     }
 
     override fun loadMoreDta() {

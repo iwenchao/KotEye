@@ -3,6 +3,8 @@ package com.iwenchaos.koteye.mvp.contract
 import com.iwenchaos.koteye.base.IModel
 import com.iwenchaos.koteye.base.IPresenter
 import com.iwenchaos.koteye.base.IView
+import com.iwenchaos.koteye.mvp.model.bean.HomeInfo
+import io.reactivex.Observable
 
 /**
  * Created by chaos
@@ -25,7 +27,7 @@ interface HomeContract {
 
     interface Model : IModel {
 
-        fun loadHomeDta(page:Int?)
+        fun loadHomeDta(page:Int?): Observable<HomeInfo>
         fun loadMoreDta()
 
     }

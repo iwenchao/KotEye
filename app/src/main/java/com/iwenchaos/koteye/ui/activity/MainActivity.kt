@@ -1,5 +1,6 @@
 package com.iwenchaos.koteye.ui.activity
 
+import android.support.v4.app.FragmentTransaction
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.iwenchaos.koteye.BuildConfig
@@ -7,6 +8,7 @@ import com.iwenchaos.koteye.R
 import com.iwenchaos.koteye.base.BaseActivity
 import com.iwenchaos.koteye.mvp.model.bean.TabEntity
 import com.iwenchaos.koteye.toast
+import com.iwenchaos.koteye.ui.fragment.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -25,6 +27,10 @@ class MainActivity : BaseActivity() {
     private val mTabs = ArrayList<CustomTabEntity>()
     private var mTabIndex = 0
 
+    private var homeFragment: HomeFragment? = null
+    private var discoverFragment: HomeFragment? = null
+    private var hotFragment: HomeFragment? = null
+    private var userFragment: HomeFragment? = null
 
     /**
      * 布局
@@ -32,20 +38,20 @@ class MainActivity : BaseActivity() {
     override fun layoutId() = R.layout.activity_main
 
     override fun initUi() {
-        initTab()
+        initTab(mTabIndex)//default
 
     }
 
     override fun loadDta() {
     }
 
-    private fun initTab() {
+    private fun initTab(tabIndex: Int) {
 
         (0 until mTabTitles.size).mapTo(mTabs) {
             TabEntity(mTabTitles[it], mUnSelectIconIds[it], mSelectedIconIds[it])
         }
         tab_layout.setTabData(mTabs)
-        tab_layout.currentTab = mTabIndex
+        tab_layout.currentTab = tabIndex
         tab_layout.setOnTabSelectListener(object : OnTabSelectListener {
 
             override fun onTabSelect(position: Int) {
@@ -59,5 +65,49 @@ class MainActivity : BaseActivity() {
             }
 
         })
+        switchFragment(tabIndex)
     }
+
+    private fun switchFragment(tab: Int) {
+        val transaction = supportFragmentManager.beginTransaction()
+        hideFragments(transaction)
+        when (tab) {
+            0 -> hotFragment?.let {
+                transaction.show(it)
+            } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
+                homeFragment = it
+                transaction.replace(R.id.fl_container, it, "home")
+            }
+            1 -> hotFragment?.let {
+                transaction.show(it)
+            } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
+                homeFragment = it
+                transaction.replace(R.id.fl_container, it, "home")
+            }
+            2 -> hotFragment?.let {
+                transaction.show(it)
+            } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
+                homeFragment = it
+                transaction.replace(R.id.fl_container, it, "home")
+            }
+            3 -> hotFragment?.let {
+                transaction.show(it)
+            } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
+                homeFragment = it
+                transaction.replace(R.id.fl_container, it, "home")
+            }
+        }
+    }
+
+    /**
+     * 隐藏所有的Fragment
+     * @param transaction transaction
+     */
+    private fun hideFragments(transaction: FragmentTransaction) {
+        homeFragment?.let { transaction.hide(it) }
+        discoverFragment?.let { transaction.hide(it) }
+        hotFragment?.let { transaction.hide(it) }
+        userFragment?.let { transaction.hide(it) }
+    }
+
 }

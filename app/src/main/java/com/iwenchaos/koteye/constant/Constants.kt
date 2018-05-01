@@ -23,4 +23,7 @@ class Constants private constructor(){
 
         val FILE_COLLECTION_NAME = "collection_file"    //收藏视屏缓存的文件名
     }
+
+
+    val BASE_URL = "http://baobab.kaiyanapp.com/api/"
 }
