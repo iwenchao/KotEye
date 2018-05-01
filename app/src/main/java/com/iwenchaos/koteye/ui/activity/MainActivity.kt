@@ -48,7 +48,7 @@ class MainActivity : BaseActivity() {
     private fun initTab(tabIndex: Int) {
 
         (0 until mTabTitles.size).mapTo(mTabs) {
-            TabEntity(mTabTitles[it], mUnSelectIconIds[it], mSelectedIconIds[it])
+            TabEntity(mTabTitles[it], mSelectedIconIds[it], mUnSelectIconIds[it])
         }
         tab_layout.setTabData(mTabs)
         tab_layout.currentTab = tabIndex
@@ -97,6 +97,9 @@ class MainActivity : BaseActivity() {
                 transaction.replace(R.id.fl_container, it, "home")
             }
         }
+        mTabIndex = tab
+        tab_layout.currentTab = mTabIndex
+        transaction.commitAllowingStateLoss()
     }
 
     /**
