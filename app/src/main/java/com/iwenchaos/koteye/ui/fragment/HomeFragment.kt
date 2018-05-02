@@ -119,6 +119,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     }
 
     override fun setContent(homeInfo: HomeInfo) {
+
         homeAdapter?.bannerItemSize = homeInfo.issueList[0].count
         homeAdapter?.addData(homeInfo.issueList[0].itemList)
     }

@@ -14,6 +14,7 @@ import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
+import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.tinker.lib.tinker.TinkerInstaller
 import com.tencent.tinker.loader.app.DefaultApplicationLike
 import kotlin.properties.Delegates
@@ -62,6 +63,7 @@ class EyeApplication constructor(application: Application,
         refWatcher = leakCanary()
         DisplayManager.init(context)
         logger()
+        CrashReport.initCrashReport(context,"bb315ff392",false)//注册时申请的APPID
         application.registerActivityLifecycleCallbacks(activityCallback)
     }
 
