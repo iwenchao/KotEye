@@ -43,11 +43,7 @@ class MainActivity : BaseActivity() {
 
     }
 
-    override fun loadDta() {
-
-
-
-    }
+    override fun loadDta() { }
 
     private fun initTab(tabIndex: Int) {
 

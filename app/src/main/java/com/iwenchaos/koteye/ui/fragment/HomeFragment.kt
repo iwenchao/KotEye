@@ -86,7 +86,17 @@ class HomeFragment : BaseFragment(), HomeContract.View {
                     iv_search.setImageResource(R.mipmap.ic_action_search_white)
                     tv_header_title.text = ""
                 } else {
-
+                    if (homeAdapter?.list!!.size > 1) {
+                        home_toolbar.setBackgroundColor(activity?.resources?.getColor(R.color.color_title_bg)!!)
+                        iv_search.setImageResource(R.mipmap.ic_action_search_black)
+                        val itemList = homeAdapter!!.list
+                        val item = itemList[curVisibleItemPos + homeAdapter!!.bannerItemSize - 1]
+                        if (item.type == "textHeader") {
+                            tv_header_title.text = item.data?.text
+                        } else {
+                            tv_header_title.text = dateFormat.format(item.data?.date)
+                        }
+                    }
                 }
             }
         })
@@ -103,11 +113,12 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         mPresenter.loadHomeDta()
 
     }
+
     override fun setBanner(banner: HomeInfo) {
         homeAdapter?.addBanner(banner.issueList[0].itemList)
     }
 
-    override fun setContent(homeInfo:HomeInfo) {
+    override fun setContent(homeInfo: HomeInfo) {
         homeAdapter?.bannerItemSize = homeInfo.issueList[0].count
         homeAdapter?.addData(homeInfo.issueList[0].itemList)
     }
