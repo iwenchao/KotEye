@@ -15,17 +15,19 @@ import io.reactivex.schedulers.Schedulers
 class HomeModel : HomeContract.Model {
 
 
+    override fun loadHomeDta(page: Int?): Observable<HomeInfo> {
+        return RetrofitManager.service.getFirstHomeData(page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
 
 
-
-
-
-    override fun loadHomeDta(page:Int?): Observable<HomeInfo> {
-        return RetrofitManager.service.getFirstHomeData(page).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
     }
 
 
-    override fun loadMoreDta() {
+    override fun loadMoreDta(): Observable<HomeInfo> {
+        return RetrofitManager.service.getFirstHomeData(0)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
 
     }
 

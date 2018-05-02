@@ -28,7 +28,7 @@ interface HomeContract {
     interface Model : IModel {
 
         fun loadHomeDta(page:Int?): Observable<HomeInfo>
-        fun loadMoreDta()
+        fun loadMoreDta():Observable<HomeInfo>
 
     }
 
