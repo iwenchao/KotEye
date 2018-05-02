@@ -15,11 +15,14 @@ interface HomeContract {
 
     interface View : IView {
 
+        fun setBanner(banner:HomeInfo)
+        fun setContent(homeInfo:HomeInfo)
+
     }
 
     interface Presenter : IPresenter<View> {
 
-        fun loadHomeDta(page:Int?)
+        fun loadHomeDta()
 
         fun loadMoreDta()
 
@@ -27,8 +30,9 @@ interface HomeContract {
 
     interface Model : IModel {
 
-        fun loadHomeDta(page:Int?): Observable<HomeInfo>
-        fun loadMoreDta():Observable<HomeInfo>
+        fun loadHomeDta(page: Int?): Observable<HomeInfo>
+        fun loadHomeDta(pageUrl: String): Observable<HomeInfo>
+        fun loadMoreDta(): Observable<HomeInfo>
 
     }
 

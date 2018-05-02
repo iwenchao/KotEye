@@ -6,7 +6,6 @@ import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.support.annotation.RequiresApi
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.FragmentActivity
 import android.util.Pair
@@ -46,8 +45,14 @@ class HomeAdapter(override var context: Context, list: ArrayList<HomeInfo.Issue.
         private val ITEM_TYPE_CONTENT = 3
     }
 
-    constructor(context: FragmentActivity?):this(context as Context,ArrayList<HomeInfo.Issue.Item>()){
+    constructor(context: FragmentActivity?) : this(context as Context, ArrayList<HomeInfo.Issue.Item>())
 
+    fun addBanner(banners: ArrayList<HomeInfo.Issue.Item>) {
+        if (!banners.isEmpty()) {
+            bannerItemSize = banners.size
+            this.list.addAll(banners)
+            notifyDataSetChanged()
+        }
     }
 
     fun addData(itemList: ArrayList<HomeInfo.Issue.Item>) {
@@ -90,7 +95,6 @@ class HomeAdapter(override var context: Context, list: ArrayList<HomeInfo.Issue.
     }
 
 
-    @SuppressLint("NewApi")
     override fun bindData(holder: ViewHolder, data: HomeInfo.Issue.Item, position: Int) {
         when (getItemViewType(position)) {
             ITEM_TYPE_BANNER -> {
@@ -133,15 +137,18 @@ class HomeAdapter(override var context: Context, list: ArrayList<HomeInfo.Issue.
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun gotoViewPlayer(activity: Activity, view: View, itemData: HomeInfo.Issue.Item) {
         Intent(activity, MainActivity::class.java).run {
             putExtra(Constants.Key.BUNDLE_VIDEO_DATA, itemData)
             putExtra(Constants.Key.TRANSITION, true)
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                 val pair = Pair<View, String>(view, Constants.Key.IMG_TRANSITION)
-                val options = ActivityOptions.makeSceneTransitionAnimation(activity, pair)
-                ActivityCompat.startActivity(activity, this, options.toBundle())
+                val options = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions.makeSceneTransitionAnimation(activity, pair)
+                } else {
+                   null
+                }
+                ActivityCompat.startActivity(activity, this, options?.toBundle())
             } else {
                 activity.startActivity(this)
                 activity.overridePendingTransition(R.anim.anim_in, R.anim.anim_out)
@@ -184,7 +191,7 @@ class HomeAdapter(override var context: Context, list: ArrayList<HomeInfo.Issue.
                     .transition(DrawableTransitionOptions().crossFade())
                     .into(holder.getView(R.id.iv_avatar))
         }
-        holder.setText(R.id.tv_title, itemData?.title?:"")
+        holder.setText(R.id.tv_title, itemData?.title ?: "")
 
         //遍历标签
         itemData?.tags?.take(4)?.forEach {

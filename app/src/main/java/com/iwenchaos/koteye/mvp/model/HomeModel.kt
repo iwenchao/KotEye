@@ -23,6 +23,14 @@ class HomeModel : HomeContract.Model {
 
     }
 
+    override fun loadHomeDta(pageUrl: String): Observable<HomeInfo> {
+        return RetrofitManager.service.getFirstHomeData(pageUrl)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+
+
+    }
+
 
     override fun loadMoreDta(): Observable<HomeInfo> {
         return RetrofitManager.service.getFirstHomeData(0)

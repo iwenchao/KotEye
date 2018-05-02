@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import com.iwenchaos.koteye.R
 import com.iwenchaos.koteye.base.BaseFragment
 import com.iwenchaos.koteye.mvp.contract.HomeContract
+import com.iwenchaos.koteye.mvp.model.bean.HomeInfo
 import com.iwenchaos.koteye.mvp.presenter.HomePresenter
 import com.iwenchaos.koteye.ui.adapter.HomeAdapter
 import com.scwang.smartrefresh.header.MaterialHeader
@@ -20,10 +21,10 @@ import java.util.*
  */
 class HomeFragment : BaseFragment(), HomeContract.View {
 
+
     private var mTitle: String? = null
     private var isLoadingMore = false;
     private var isRefresh = false
-    private var page = 1
     private var localHeader: MaterialHeader? = null
     private var homeAdapter: HomeAdapter? = null
     private val mPresenter by lazy { HomePresenter() }
@@ -56,7 +57,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
             setEnableHeaderTranslationContent(true)//设置是否启用内容视图拖动效果
             setOnRefreshListener {
                 isRefresh = true
-                mPresenter.loadHomeDta(page)
+                mPresenter.loadHomeDta()
             }
             setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
         }
@@ -99,7 +100,16 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     }
 
     override fun lazyLoad() {
-        mPresenter.loadHomeDta(page)
+        mPresenter.loadHomeDta()
 
     }
+    override fun setBanner(banner: HomeInfo) {
+        homeAdapter?.addBanner(banner.issueList[0].itemList)
+    }
+
+    override fun setContent(homeInfo:HomeInfo) {
+        homeAdapter?.bannerItemSize = homeInfo.issueList[0].count
+        homeAdapter?.addData(homeInfo.issueList[0].itemList)
+    }
+
 }

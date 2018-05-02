@@ -4,6 +4,7 @@ import com.iwenchaos.koteye.mvp.model.bean.HomeInfo
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 /**
  * Created by chaos
@@ -17,4 +18,9 @@ interface ApiService{
      */
     @GET("v2/feed?")
     fun getFirstHomeData(@Query("num") num: Int?): Observable<HomeInfo>
+    /**
+     * 首页数据 nextPageUrl
+     */
+    @GET
+    fun getFirstHomeData(@Url url: String): Observable<HomeInfo>
 }

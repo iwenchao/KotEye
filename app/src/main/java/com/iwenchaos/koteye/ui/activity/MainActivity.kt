@@ -82,25 +82,25 @@ class MainActivity : BaseActivity() {
                 transaction.show(it)
             } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
                 homeFragment = it
-                transaction.replace(R.id.fl_container, it, "home")
+                transaction.add(R.id.fl_container, it, "home")
             }
             1 -> discoverFragment?.let {
                 transaction.show(it)
             } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
                 discoverFragment = it
-                transaction.replace(R.id.fl_container, it, "discover")
+                transaction.add(R.id.fl_container, it, "discover")
             }
             2 -> hotFragment?.let {
                 transaction.show(it)
             } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
                 hotFragment = it
-                transaction.replace(R.id.fl_container, it, "hot")
+                transaction.add(R.id.fl_container, it, "hot")
             }
             3 -> userFragment?.let {
                 transaction.show(it)
             } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
                 userFragment = it
-                transaction.replace(R.id.fl_container, it, "user")
+                transaction.add(R.id.fl_container, it, "user")
             }
         }
         mTabIndex = tab
