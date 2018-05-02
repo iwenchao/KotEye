@@ -39,10 +39,14 @@ class MainActivity : BaseActivity() {
 
     override fun initUi() {
         initTab(mTabIndex)//default
+        switchFragment(mTabIndex)
 
     }
 
     override fun loadDta() {
+
+
+
     }
 
     private fun initTab(tabIndex: Int) {
@@ -57,44 +61,46 @@ class MainActivity : BaseActivity() {
             override fun onTabSelect(position: Int) {
                 if (BuildConfig.DEBUG) toast("当前：" + position)
                 //switch fragment
-
+                switchFragment(position)
 
             }
 
             override fun onTabReselect(position: Int) {
+                //下拉刷新，处理双击事件
+
             }
 
         })
-        switchFragment(tabIndex)
+
     }
 
     private fun switchFragment(tab: Int) {
         val transaction = supportFragmentManager.beginTransaction()
         hideFragments(transaction)
         when (tab) {
-            0 -> hotFragment?.let {
+            0 -> homeFragment?.let {
                 transaction.show(it)
             } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
                 homeFragment = it
                 transaction.replace(R.id.fl_container, it, "home")
             }
-            1 -> hotFragment?.let {
+            1 -> discoverFragment?.let {
                 transaction.show(it)
             } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
-                homeFragment = it
-                transaction.replace(R.id.fl_container, it, "home")
+                discoverFragment = it
+                transaction.replace(R.id.fl_container, it, "discover")
             }
             2 -> hotFragment?.let {
                 transaction.show(it)
             } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
-                homeFragment = it
-                transaction.replace(R.id.fl_container, it, "home")
+                hotFragment = it
+                transaction.replace(R.id.fl_container, it, "hot")
             }
-            3 -> hotFragment?.let {
+            3 -> userFragment?.let {
                 transaction.show(it)
             } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
-                homeFragment = it
-                transaction.replace(R.id.fl_container, it, "home")
+                userFragment = it
+                transaction.replace(R.id.fl_container, it, "user")
             }
         }
         mTabIndex = tab
