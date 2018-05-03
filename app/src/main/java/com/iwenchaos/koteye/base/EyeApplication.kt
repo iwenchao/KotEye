@@ -35,7 +35,7 @@ class EyeApplication constructor(application: Application,
 ) : DefaultApplicationLike(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime,
         applicationStartMillisTime, tinkerResultIntent) {
     //leak canary
-    var refWatcher: RefWatcher? = null
+    private var refWatcher: RefWatcher? = null
 
     companion object {
 
@@ -87,6 +87,8 @@ class EyeApplication constructor(application: Application,
                 RefWatcher.DISABLED
             } else
                 LeakCanary.install(application)
+
+
 
 
     private val activityCallback = object : Application.ActivityLifecycleCallbacks {

@@ -1,6 +1,7 @@
 package com.iwenchaos.koteye.ui.activity
 
 import android.support.v4.app.FragmentTransaction
+import android.view.KeyEvent
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.iwenchaos.koteye.BuildConfig
@@ -43,7 +44,7 @@ class MainActivity : BaseActivity() {
 
     }
 
-    override fun loadDta() { }
+    override fun loadDta() {}
 
     private fun initTab(tabIndex: Int) {
 
@@ -113,6 +114,21 @@ class MainActivity : BaseActivity() {
         discoverFragment?.let { transaction.hide(it) }
         hotFragment?.let { transaction.hide(it) }
         userFragment?.let { transaction.hide(it) }
+    }
+
+    private var mExitTime: Long = 0L
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis().minus(mExitTime) <= 2000) {
+                finish()
+            } else {
+                mExitTime = System.currentTimeMillis()
+                toast("再按一次退出程序")
+            }
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
 }
