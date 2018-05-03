@@ -54,5 +54,8 @@
     <string name="please_open_permission">为了能正常使用，请开启这些权限吧</string>
     <string name="init_ok">初始化完毕！</string>
     <string name="permission_closed">用户关闭了权限</string>
+    <string name="card_string">CoordinatorLayout功能如此强大，而他的神奇之处在于Behavior对象，CoordinatorLayout自己并不控制View，所有的控制权都在Behavior。前面写到了FloatingActionButton.Behavior，AppBarLayout.Behavior, AppBarLayout.ScrollingViewBehavior。 AppBarLayout中有两个Behavior，一个是拿来给它自己用的，另一个是拿来给它的兄弟结点用的。这些Behavior实现了复杂的控制功能。系统的Behavior毕竟有限，我们可以通过自定义的方式来实现自己的Behavior。</string>
+    <string name="master">master</string>
+    <string name="check_information"><![CDATA[查看个人主页>]]></string>
 
 </resources>

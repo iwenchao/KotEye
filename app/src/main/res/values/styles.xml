@@ -16,6 +16,12 @@
     <style name="AppTheme.NoActionBar.FullScreen">
         <item name="android:windowFullscreen">true</item>
     </style>
+    <style name="AppTheme.AppBarOverlay">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="AppTheme.PopupOverlay">
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
 
     <style name="MultipleStatusView"/>
@@ -26,5 +32,12 @@
         <item name="android:layout_margin">8dp</item>
         <item name="android:textColor">#a9b7b7</item>
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Widget">
+
+    </style>
+    <style name="Widget.CardContent">
+
     </style>
 </resources>

@@ -18,3 +18,6 @@
 7. rxjava 与 retrofit的使用与解析
 8. rxjava与retrofit的进阶封装
 9. 沉浸式状态栏：toolbar 与第三方库immersionBar使用
+10. CoordinatorLayout+AppBarLayout+CollipsingToolbarLayout+Toolbar打造精美的个人主页
+    1. layout_scrollFlags
+    2. behavior
