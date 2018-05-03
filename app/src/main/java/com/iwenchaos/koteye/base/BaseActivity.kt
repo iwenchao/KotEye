@@ -3,6 +3,7 @@ package com.iwenchaos.koteye.base
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.gyf.barlibrary.ImmersionBar
 import com.iwenchaos.koteye.widget.MultipleStatusView
 
 /**
@@ -12,6 +13,7 @@ import com.iwenchaos.koteye.widget.MultipleStatusView
  */
 abstract class BaseActivity : AppCompatActivity(), IView {
 
+    lateinit var immersionBar: ImmersionBar
     var layoutStatusView: MultipleStatusView? = null
 
     /**
@@ -26,6 +28,7 @@ abstract class BaseActivity : AppCompatActivity(), IView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
+        initImmersionBar()
         initUi()
         loadDta()
         layoutStatusView?.setOnClickListener(retryClickListener)
@@ -33,6 +36,10 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     }
 
+    private fun initImmersionBar(){
+        immersionBar = ImmersionBar.with(this)
+        immersionBar.init()
+    }
 
     /**
      * 重试监听
@@ -52,6 +59,7 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     override fun onDestroy() {
         super.onDestroy()
+        immersionBar?.destroy()
 //        EyeApplication.getRefWatcher(this)?.watch(this)
     }
 }

@@ -22,7 +22,15 @@ android {
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        // 实现毛玻璃那种透明的效果需要添加的库
+        renderscriptTargetApi 19
         renderscriptSupportModeEnabled true
+
+        ndk {
+
+            //APP的build.gradle设置支持的SO库架构
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86'
+        }
 
 
         buildConfigField "String", "MESSAGE", "\"I am the base apk\""
@@ -43,7 +51,7 @@ android {
         signingConfigs {
             release {
                 try {
-                    storeFile file("./keystore/release.keystore")
+                    storeFile file("../keystore/release.keystore")
                     storePassword "testres"
                     keyAlias "testres"
                     keyPassword "testres"
@@ -53,7 +61,7 @@ android {
             }
 
             debug {
-                storeFile file("./keystore/debug.keystore")
+                storeFile file("../keystore/debug.keystore")
             }
         }
         //解决
@@ -93,6 +101,8 @@ dependencies {
     implementation rootProject.ext.unitTest
     //android support library
     implementation rootProject.ext.supportLibs
+    //action bar
+    implementation "com.gyf.barlibrary:barlibrary:$rootProject.ext.barlibrary_version"
     //log lib
     implementation "com.orhanobut:logger:$rootProject.ext.logger"
     //可选，用于生成application类

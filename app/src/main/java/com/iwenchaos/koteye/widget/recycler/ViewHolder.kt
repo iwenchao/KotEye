@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
+@Suppress("UNCHECKED_CAST")
 /**
  * Created by chaos
  * on 2018/5/1. 11:06
