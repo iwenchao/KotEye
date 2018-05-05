@@ -11,16 +11,25 @@ import retrofit2.http.Url
  * on 2018/5/1. 15:47
  * 文件描述：
  */
-interface ApiService{
+interface ApiService {
 
     /**
      * 首页精选
      */
     @GET("v2/feed?")
     fun getFirstHomeData(@Query("num") num: Int?): Observable<HomeInfo>
+
     /**
      * 首页数据 nextPageUrl
      */
     @GET
     fun getFirstHomeData(@Url url: String): Observable<HomeInfo>
+
+    @GET("v4/tabs/follow")
+    fun getFollowList(): Observable<HomeInfo.Issue>
+
+
+    @GET
+    fun getMoreIssue(@Url url: String?): Observable<HomeInfo.Issue>
+
 }
