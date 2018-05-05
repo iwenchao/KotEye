@@ -9,6 +9,7 @@
     6. 扩展函数
     7. 内联函数
     8. ?:       !!              ?.
+    9. [集合详解](https://www.jianshu.com/p/fa5abe312269)
 4. 常用控件的用法：Toolbar，RefreshLayout
 5. kotlin构造器&初始化执行顺序
 6. 项目base
@@ -21,3 +22,4 @@
 10. CoordinatorLayout+AppBarLayout+CollipsingToolbarLayout+Toolbar打造精美的个人主页
     1. layout_scrollFlags
     2. behavior
+11. FragmentPagerAdapter与FragmentStatePagerAdapter

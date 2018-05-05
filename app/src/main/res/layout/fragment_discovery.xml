@@ -1,7 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/disToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_title_bg">
+
+        <RelativeLayout
+            android:id="@+id/relToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/color_item_title"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="标题" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/disTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tabBarHeight"
+        android:background="@color/color_title_bg"
+        app:tabIndicatorColor="#000"
+        app:tabIndicatorHeight="@dimen/tabIndicatorHeight"
+        app:tabMinWidth="100dp"
+        app:tabSelectedTextColor="#000"
+        app:tabTextColor="#5000" />
+
+    <View style="@style/DividerLine" />
+
+    <com.iwenchaos.koteye.widget.MultipleStatusView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
+        app:emptyView="@layout/empty_view"
+        app:errorView="@layout/error_view"
+        app:loadingView="@layout/loading_view"
+        app:noNetworkView="@layout/no_network_view">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/disViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.iwenchaos.koteye.widget.MultipleStatusView>
 
 </LinearLayout>

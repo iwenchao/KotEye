@@ -40,4 +40,10 @@
     <style name="Widget.CardContent">
 
     </style>
+
+    <style name="DividerLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/color_light_black</item>
+    </style>
 </resources>

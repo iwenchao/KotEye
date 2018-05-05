@@ -9,6 +9,7 @@ import com.iwenchaos.koteye.R
 import com.iwenchaos.koteye.base.BaseActivity
 import com.iwenchaos.koteye.mvp.model.bean.TabEntity
 import com.iwenchaos.koteye.toast
+import com.iwenchaos.koteye.ui.fragment.DiscoveryFragment
 import com.iwenchaos.koteye.ui.fragment.HomeFragment
 import com.iwenchaos.koteye.ui.fragment.UserFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,7 +31,7 @@ class MainActivity : BaseActivity() {
     private var mTabIndex = 0
 
     private var homeFragment: HomeFragment? = null
-    private var discoverFragment: HomeFragment? = null
+    private var discoverFragment: DiscoveryFragment? = null
     private var hotFragment: HomeFragment? = null
     private var userFragment: UserFragment? = null
 
@@ -84,7 +85,7 @@ class MainActivity : BaseActivity() {
             }
             1 -> discoverFragment?.let {
                 transaction.show(it)
-            } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
+            } ?: DiscoveryFragment.getInstance(mTabTitles[tab],null).let {
                 discoverFragment = it
                 transaction.add(R.id.fl_container, it, "discover")
             }
