@@ -50,11 +50,11 @@ class HomeFragment : BaseFragment(), HomeContract.View {
 
     override fun initUi() {
         mPresenter.attachView(this)
-        localHeader = home_refresh_layout.refreshHeader as MaterialHeader?
-        //打开下拉刷新区域块背景:
-        localHeader?.setShowBezierWave(true)
         home_refresh_layout.run {
             setEnableHeaderTranslationContent(true)//设置是否启用内容视图拖动效果
+            setOnLoadmoreListener {
+                mPresenter.loadHomeDta()
+            }
             setOnRefreshListener {
                 isRefresh = true
                 mPresenter.loadHomeDta()
@@ -124,4 +124,11 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         homeAdapter?.addData(homeInfo.issueList[0].itemList)
     }
 
+
+    override fun closeLoading() {
+        super.closeLoading()
+        isRefresh = false
+        home_refresh_layout.finishRefresh()
+        home_refresh_layout.finishLoadmore()
+    }
 }

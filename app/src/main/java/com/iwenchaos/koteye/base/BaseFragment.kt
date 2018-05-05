@@ -57,11 +57,11 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    fun showLoading() {
+   open fun showLoading() {
 
     }
 
-    fun closeLoading() {
+    open fun closeLoading() {
 
     }
 

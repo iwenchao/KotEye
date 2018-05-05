@@ -1,11 +1,11 @@
-1. tinker
-2. fragment lazy load
+1. tinker热补丁的使用
+2. fragment lazy load的优化
 3. kotlin常用操作符，以及各种高阶函数
-    1. run
-    2. let
+    1. run：闭包内部this指代当前对象，最后一行作为结果返回
+    2. let ：默认当前对象作为闭包的参数，返回值是函数中最后一行
     3. when
-    4. apply
-    5. with
+    4. apply：在函数范围内，可以任意调用该对象的任意方法，并返回改对象
+    5. with：闭包内部this指代当前指定的对象，最后一行作为结果返回
     6. 扩展函数
     7. 内联函数
     8. ?:       !!              ?.

@@ -37,8 +37,6 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
 
                     homeData = homeInfo //记录第一页是当做 banner 数据
 
-//                    view?.setBanner(homeData!!)
-
                     //根据 nextPageUrl 请求下一页数据
                     homeModel.loadHomeDta(homeInfo.nextPageUrl)
                 })
