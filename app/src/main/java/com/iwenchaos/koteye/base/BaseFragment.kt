@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.gyf.barlibrary.ImmersionBar
 import com.iwenchaos.koteye.widget.MultipleStatusView
 
 /**
@@ -15,6 +16,7 @@ import com.iwenchaos.koteye.widget.MultipleStatusView
  */
 abstract class BaseFragment : Fragment() {
 
+    private var immersionBar: ImmersionBar? = null
     private var isUiPrepared = false
     private var isDataLoaded = false
     private var container: View? = null
@@ -50,6 +52,16 @@ abstract class BaseFragment : Fragment() {
         layoutStatusView?.setOnClickListener { lazyLoad() }
     }
 
+    fun initImmersionBar() {
+        immersionBar = ImmersionBar.with(this)
+        immersionBar?.init()
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) immersionBar?.init()
+    }
+
     private fun lazyLoadDtaIfPrepared() {
         if (userVisibleHint && isUiPrepared && !isDataLoaded) {
             lazyLoad()
@@ -57,7 +69,7 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-   open fun showLoading() {
+    open fun showLoading() {
 
     }
 
@@ -67,7 +79,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-
+        immersionBar?.destroy()
     }
 
 }

@@ -7,10 +7,10 @@ import android.widget.LinearLayout
 import java.lang.reflect.Field
 
 /**
- * Created by xuhao on 2017/12/7.
- * desc:
+ * Created by chaos
+ * desc: 针对tab indicator进行优化
  */
-object TabLayoutHelper{
+object TabLayoutHelper {
 
     @SuppressLint("ObsoleteSdkInt")
     fun setUpIndicatorWidth(tabLayout: TabLayout) {

@@ -41,9 +41,11 @@
         android:background="@color/color_title_bg"
         app:tabIndicatorColor="#000"
         app:tabIndicatorHeight="@dimen/tabIndicatorHeight"
+
         app:tabMinWidth="100dp"
         app:tabSelectedTextColor="#000"
-        app:tabTextColor="#5000" />
+        app:tabTextColor="#5000"
+        />
 
     <View style="@style/DividerLine" />
 
