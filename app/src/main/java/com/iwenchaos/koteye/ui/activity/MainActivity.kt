@@ -11,6 +11,7 @@ import com.iwenchaos.koteye.mvp.model.bean.TabEntity
 import com.iwenchaos.koteye.toast
 import com.iwenchaos.koteye.ui.fragment.DiscoveryFragment
 import com.iwenchaos.koteye.ui.fragment.HomeFragment
+import com.iwenchaos.koteye.ui.fragment.HotFragment
 import com.iwenchaos.koteye.ui.fragment.UserFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -32,7 +33,7 @@ class MainActivity : BaseActivity() {
 
     private var homeFragment: HomeFragment? = null
     private var discoverFragment: DiscoveryFragment? = null
-    private var hotFragment: HomeFragment? = null
+    private var hotFragment: HotFragment? = null
     private var userFragment: UserFragment? = null
 
     /**
@@ -85,13 +86,13 @@ class MainActivity : BaseActivity() {
             }
             1 -> discoverFragment?.let {
                 transaction.show(it)
-            } ?: DiscoveryFragment.getInstance(mTabTitles[tab],null).let {
+            } ?: DiscoveryFragment.getInstance(mTabTitles[tab], null).let {
                 discoverFragment = it
                 transaction.add(R.id.fl_container, it, "discover")
             }
             2 -> hotFragment?.let {
                 transaction.show(it)
-            } ?: HomeFragment.getInstance(mTabTitles[tab]).let {
+            } ?: HotFragment.getInstance(mTabTitles[tab], null).let {
                 hotFragment = it
                 transaction.add(R.id.fl_container, it, "hot")
             }
