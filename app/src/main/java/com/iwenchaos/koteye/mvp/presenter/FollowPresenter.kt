@@ -3,6 +3,9 @@ package com.iwenchaos.koteye.mvp.presenter
 import com.iwenchaos.koteye.base.BasePresenter
 import com.iwenchaos.koteye.mvp.contract.FollowContract
 import com.iwenchaos.koteye.mvp.model.FollowModel
+import com.iwenchaos.koteye.mvp.model.bean.HomeInfo
+import com.iwenchaos.koteye.net.exception.ExceptionHandle
+import io.reactivex.functions.Consumer
 
 /**
  * Created by chaos
@@ -17,8 +20,24 @@ class FollowPresenter : BasePresenter<FollowContract.View>(), FollowContract.Pre
     }
 
     override fun loadDta() {
+        checkAttached()
         view?.showLoading()
-        mModel.loadDta()
+        val dispose = mModel.loadDta().subscribe(Consumer<HomeInfo.Issue> { issue ->
+            view?.apply {
+                closeLoading()
+                nextPageUrl = issue?.nextPageUrl
+                view?.renderUi(issue)
+
+            }
+        }, object : Consumer<Throwable> {
+            override fun accept(t: Throwable) {
+                view?.apply {
+                    closeLoading()
+                    showError(ExceptionHandle.handleException(t), ExceptionHandle.errorCode)
+                }
+            }
+        })
+        addSubscription(dispose)
     }
 
     override fun loadMore() {

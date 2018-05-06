@@ -15,8 +15,9 @@ interface FollowContract {
 
     interface View : IView {
 
-        fun renderUi(issue: HomeInfo.Issue)
+        fun renderUi(issue: HomeInfo.Issue?)
 
+        fun showError(errorMsg: String, errorCode: Int)
     }
 
     interface Presenter : IPresenter<View> {
