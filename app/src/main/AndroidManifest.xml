@@ -31,6 +31,7 @@
 
             />
         <activity android:name=".ui.activity.VideoDetailActivity" />
+        <activity android:name=".ui.activity.CategoryDetailActivity" />
 
         <!-- 配置APP ID -->
         <meta-data android:name="BUGLY_APPID"

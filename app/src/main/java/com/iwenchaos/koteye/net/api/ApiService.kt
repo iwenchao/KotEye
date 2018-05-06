@@ -1,5 +1,6 @@
 package com.iwenchaos.koteye.net.api
 
+import com.iwenchaos.koteye.mvp.model.bean.CategoryInfo
 import com.iwenchaos.koteye.mvp.model.bean.HomeInfo
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -31,5 +32,9 @@ interface ApiService {
 
     @GET
     fun getMoreIssue(@Url url: String?): Observable<HomeInfo.Issue>
+
+    @GET("v4/categories")
+    fun getCategoryList(): Observable<ArrayList<CategoryInfo>>
+
 
 }
