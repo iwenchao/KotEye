@@ -4,7 +4,6 @@ import android.support.v4.app.FragmentTransaction
 import android.view.KeyEvent
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
-import com.iwenchaos.koteye.BuildConfig
 import com.iwenchaos.koteye.R
 import com.iwenchaos.koteye.base.BaseActivity
 import com.iwenchaos.koteye.mvp.model.bean.TabEntity
@@ -59,7 +58,6 @@ class MainActivity : BaseActivity() {
         tab_layout.setOnTabSelectListener(object : OnTabSelectListener {
 
             override fun onTabSelect(position: Int) {
-                if (BuildConfig.DEBUG) toast("当前：" + position)
                 //switch fragment
                 switchFragment(position)
 
