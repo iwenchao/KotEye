@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.iwenchaos.koteye.R
 import com.iwenchaos.koteye.base.BaseFragment
-import com.iwenchaos.koteye.ui.adapter.DiscoveryPagerAdapter
+import com.iwenchaos.koteye.ui.adapter.LocalPagerAdapter
 import com.iwenchaos.koteye.utils.StatusBarUtil
 import com.iwenchaos.koteye.utils.TabLayoutHelper
 import kotlinx.android.synthetic.main.fragment_discovery.*
@@ -20,7 +20,7 @@ class DiscoveryFragment : BaseFragment() {
     private var tabTxtList = listOf("关注", "分类")
     private var tabPageList = ArrayList<Fragment>()
     private lateinit var toolBarTitle: String
-    private var pagerAdapter: DiscoveryPagerAdapter? = null
+    private var mPagerAdapter: LocalPagerAdapter? = null
 
 
     companion object {
@@ -44,9 +44,9 @@ class DiscoveryFragment : BaseFragment() {
         tvHeader.text = toolBarTitle
         tabPageList.add(FollowFragment.getInstance(null))
         tabPageList.add(CategoryFragment.getInstance(null))
-        pagerAdapter = DiscoveryPagerAdapter(childFragmentManager, tabPageList, tabTxtList)
+        mPagerAdapter = LocalPagerAdapter(childFragmentManager, tabPageList, tabTxtList)
         disViewPager.run {
-            adapter = pagerAdapter
+            adapter = mPagerAdapter
         }
         disTabLayout.setupWithViewPager(disViewPager)
         //优化tab indicator的显示宽度
