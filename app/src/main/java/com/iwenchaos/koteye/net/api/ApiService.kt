@@ -2,6 +2,7 @@ package com.iwenchaos.koteye.net.api
 
 import com.iwenchaos.koteye.mvp.model.bean.CategoryInfo
 import com.iwenchaos.koteye.mvp.model.bean.HomeInfo
+import com.iwenchaos.koteye.mvp.model.bean.TabIVo
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -35,6 +36,9 @@ interface ApiService {
 
     @GET("v4/categories")
     fun getCategoryList(): Observable<ArrayList<CategoryInfo>>
+
+    @GET("v4/rankList")
+    fun getHotTabList():Observable<TabIVo>
 
 
 }

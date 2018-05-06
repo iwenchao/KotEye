@@ -21,6 +21,7 @@ abstract class BaseFragment : Fragment() {
     private var isDataLoaded = false
     private var container: View? = null
     private var layoutStatusView: MultipleStatusView? = null
+    private var presenter: IPresenter<IView>? = null
 
     @LayoutRes
     abstract fun getLayoutId(): Int
@@ -80,6 +81,7 @@ abstract class BaseFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         immersionBar?.destroy()
+        presenter?.detachView()
     }
 
 }
