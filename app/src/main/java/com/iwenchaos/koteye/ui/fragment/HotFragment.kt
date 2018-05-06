@@ -84,7 +84,7 @@ class HotFragment : BaseFragment() {
         multipleStatusView.showContent()
         info.tabInfo.tabList.mapTo(tabTxtList) { it.name }
         info.tabInfo.tabList.mapTo(tabPageList) {
-            CategoryFragment.getInstance(null)
+            HotTabFragment.getInstance(it.apiUrl)
         }
 
         hotViewPager.run {

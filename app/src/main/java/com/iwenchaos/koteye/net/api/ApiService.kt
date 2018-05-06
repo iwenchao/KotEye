@@ -38,7 +38,11 @@ interface ApiService {
     fun getCategoryList(): Observable<ArrayList<CategoryInfo>>
 
     @GET("v4/rankList")
-    fun getHotTabList():Observable<TabIVo>
+    fun getHotTabList(): Observable<TabIVo>
+
+
+    @GET
+    fun getTabContent(@Url pageUrl: String): Observable<HomeInfo.Issue>
 
 
 }

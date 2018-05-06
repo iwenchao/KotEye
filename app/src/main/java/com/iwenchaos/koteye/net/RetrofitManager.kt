@@ -38,7 +38,7 @@ object RetrofitManager {
                     //log
                     val httpLogInterceptor = HttpLoggingInterceptor()
                     if (BuildConfig.DEBUG)
-                        httpLogInterceptor.level = HttpLoggingInterceptor.Level.BASIC
+                        httpLogInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
                     //cache
                     val cacheFile = File(EyeApplication.context.cacheDir, "net_cache")
