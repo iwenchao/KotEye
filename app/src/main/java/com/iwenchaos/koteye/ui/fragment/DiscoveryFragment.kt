@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import com.iwenchaos.koteye.R
 import com.iwenchaos.koteye.base.BaseFragment
 import com.iwenchaos.koteye.ui.adapter.DiscoveryPagerAdapter
+import com.iwenchaos.koteye.utils.StatusBarUtil
 import com.iwenchaos.koteye.utils.TabLayoutHelper
 import kotlinx.android.synthetic.main.fragment_discovery.*
 
@@ -34,7 +35,12 @@ class DiscoveryFragment : BaseFragment() {
     override fun getLayoutId() = R.layout.fragment_discovery
 
     override fun initUi() {
-        initImmersionBar()
+//        initImmersionBar()
+        //状态栏透明和间距处理
+        StatusBarUtil.darkMode(activity!!)
+        StatusBarUtil.setPaddingSmart(this.activity!!, disToolbar)
+
+
         tvHeader.text = toolBarTitle
         tabPageList.add(FollowFragment.getInstance(null))
         tabPageList.add(CategoryFragment.getInstance(null))
