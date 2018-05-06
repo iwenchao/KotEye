@@ -1,7 +1,7 @@
 ext {
     compileSdkVersion = 27
     applicationId = "com.iwenchaos.koteye"
-    minSdkVersion = 15
+    minSdkVersion = 16
     targetSdkVersion = 26
     versionCode = 1
     versionName = "1.0"
@@ -15,9 +15,9 @@ ext {
     ]
 
     supportDeps = [
-            supportv4               : "com.android.support:support-v4:$dependVersion.androidSupportSdkVersion",
+            supportv4  : "com.android.support:support-v4:$dependVersion.androidSupportSdkVersion",
             appcompatv7: "com.android.support:appcompat-v7:$dependVersion.androidSupportSdkVersion",
-            design                  : "com.android.support:design:$dependVersion.androidSupportSdkVersion",
+            design     : "com.android.support:design:$dependVersion.androidSupportSdkVersion",
             cardView   : "com.android.support:cardview-v7:$dependVersion.androidSupportSdkVersion"
     ]
 
@@ -49,8 +49,9 @@ ext {
     permission = "1.0.7"
     realtimeblurview = "1.1.0"
     smartrefresh = "1.0.3"
-    banner ="2.1.8"
+    banner = "2.1.8"
     barlibrary_version = "2.3.0"
+    gsyVideo_version = "4.1.2"
 
 
 

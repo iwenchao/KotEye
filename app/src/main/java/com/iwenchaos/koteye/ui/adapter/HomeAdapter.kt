@@ -19,7 +19,7 @@ import com.iwenchaos.koteye.constant.Constants
 import com.iwenchaos.koteye.durationFormat
 import com.iwenchaos.koteye.glide.GlideApp
 import com.iwenchaos.koteye.mvp.model.bean.HomeInfo
-import com.iwenchaos.koteye.ui.activity.MainActivity
+import com.iwenchaos.koteye.ui.activity.VideoDetailActivity
 import com.iwenchaos.koteye.widget.recycler.CommonAdapter
 import com.iwenchaos.koteye.widget.recycler.ViewHolder
 import io.reactivex.Observable
@@ -138,7 +138,7 @@ class HomeAdapter(override var context: Context, list: ArrayList<HomeInfo.Issue.
     }
 
     private fun gotoViewPlayer(activity: Activity, view: View, itemData: HomeInfo.Issue.Item) {
-        Intent(activity, MainActivity::class.java).run {
+        Intent(activity, VideoDetailActivity::class.java).run {
             putExtra(Constants.Key.BUNDLE_VIDEO_DATA, itemData)
             putExtra(Constants.Key.TRANSITION, true)
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {

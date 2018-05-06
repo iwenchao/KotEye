@@ -22,7 +22,7 @@ class HotTabPresenter : BasePresenter<HotTabContract.View>(), HotTabContract.Pre
     override fun loadDta(pageUrl: String) {
         checkAttached()
         view?.showLoading()
-        val disposible = mModel.loadDta(pageUrl).subscribe(object : Consumer<HomeInfo.Issue> {
+        val disposable = mModel.loadDta(pageUrl).subscribe(object : Consumer<HomeInfo.Issue> {
             override fun accept(data: HomeInfo.Issue?) {
                 view?.closeLoading()
                 data?.let {
@@ -35,6 +35,6 @@ class HotTabPresenter : BasePresenter<HotTabContract.View>(), HotTabContract.Pre
 
         }, Consumer<Throwable> { t -> view?.showError(ExceptionHandle.handleException(t), ExceptionHandle.errorCode) })
 
-        addSubscription(disposible)
+        addSubscription(disposable)
     }
 }

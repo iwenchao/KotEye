@@ -45,10 +45,10 @@ abstract class CommonAdapter<T>(open var context: Context,
         bindData(holder, list[position], position)
 
         itemClickListener?.let {
-            holder?.itemView?.setOnClickListener { itemClickListener?.onItemClick(list[position], position) }
+            holder.itemView?.setOnClickListener { itemClickListener?.onItemClick(list[position], position) }
         }
         itemLongClickListener?.let {
-            holder?.itemView?.setOnLongClickListener { itemLongClickListener?.onItemLongClick(list[position], position)!! }
+            holder.itemView?.setOnLongClickListener { itemLongClickListener?.onItemLongClick(list[position], position)!! }
         }
     }
 

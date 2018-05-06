@@ -140,7 +140,8 @@ dependencies {
     //如果你在 Kotlin 编写的类里使用 Glide 注解，你需要引入一个 kapt 依赖，以代替常规的 annotationProcessor 依赖
     kapt 'com.github.bumptech.glide:compiler:4.6.1'
     //bugly
-    compile 'com.tencent.bugly:crashreport:latest.release'
+    compile "com.tencent.bugly:crashreport:latest.release"
+    compile "com.shuyu:GSYVideoPlayer:${rootProject.ext.gsyVideo_version}"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary"
     compile 'de.hdodenhof:circleimageview:1.3.0'
