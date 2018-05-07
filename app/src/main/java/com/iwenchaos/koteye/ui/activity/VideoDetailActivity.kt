@@ -247,7 +247,7 @@ class VideoDetailActivity : BaseActivity(), VideoContract.View {
         mVideoInfoData = itemInfo
         mVideoAdapter?.addVideoInfo(itemInfo)
         //开始请求相关视频数据
-
+        mPresenter.getRelateList(itemInfo.data?.id!!)
     }
 
     override fun setBackground(url: String) {
