@@ -44,5 +44,8 @@ interface ApiService {
     @GET
     fun getTabContent(@Url pageUrl: String): Observable<HomeInfo.Issue>
 
+    @GET("v4/video/related?")
+    fun getRelateVideoList(@Query("id") videoId: Long): Observable<HomeInfo.Issue>
+
 
 }

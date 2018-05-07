@@ -15,6 +15,7 @@
         android:layout_height="wrap_content" />
 
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -27,6 +28,11 @@
             android:background="@color/color_black" />
 
 
+        <ImageView
+            android:id="@+id/mVideoBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/vdVideoPlayer" />
         <View
             style="@style/DividerLine"
             android:layout_below="@id/vdVideoPlayer" />

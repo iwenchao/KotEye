@@ -46,6 +46,8 @@ interface VideoContract {
 
         fun setVideoDetail(itemInfo: HomeInfo.Issue.Item?)
 
+        fun getRelateList(videoId:Long)
+
     }
 
     interface Model : IModel {

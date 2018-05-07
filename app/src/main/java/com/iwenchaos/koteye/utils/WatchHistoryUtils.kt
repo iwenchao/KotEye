@@ -9,7 +9,7 @@ import java.lang.reflect.Method
 
 
 /**
- * Created by xuhao on 2017/12/11.
+ * Created by chaos
  * desc:kotlin委托属性+SharedPreference实例(记录视频观看记录的）
  */
 class WatchHistoryUtils {
@@ -18,7 +18,7 @@ class WatchHistoryUtils {
         /**
          * 保存在手机里面的文件名
          */
-        private val FILE_NAME = "kotlin_mvp_file"
+        private val FILE_NAME = "eyed_file"
 
         /**
          * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法
@@ -29,8 +29,7 @@ class WatchHistoryUtils {
          */
         fun put(context: Context, key: String, `object`: Any) {
 
-            val sp = context.getSharedPreferences(FILE_NAME,
-                    Context.MODE_PRIVATE)
+            val sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
             val editor = sp.edit()
 
             when (`object`) {
@@ -268,7 +267,7 @@ class WatchHistoryUtils {
         }
 
 
-        fun putObject(fileName: String,context: Context, `object`: Any?,
+        fun putObject(fileName: String, context: Context, `object`: Any?,
                       key: String): Boolean {
             val sp = context.getSharedPreferences(fileName,
                     Context.MODE_PRIVATE)
@@ -309,7 +308,7 @@ class WatchHistoryUtils {
          * @param key
          * @return
          */
-        fun getObject(fileName: String,context: Context, key: String): Any? {
+        fun getObject(fileName: String, context: Context, key: String): Any? {
             val sharePre = context.getSharedPreferences(fileName,
                     Context.MODE_PRIVATE)
             try {

@@ -30,6 +30,13 @@ object DisplayManager {
         sDpi = displayMetrics?.densityDpi
     }
 
+    fun getScreenWidth(): Int? {
+        return sWidth
+    }
+
+    fun getScreenHeight(): Int? {
+        return sHeight
+    }
     /**
      * 输入UI图的尺寸，输出实际的px
      *
