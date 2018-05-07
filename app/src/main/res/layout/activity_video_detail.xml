@@ -28,10 +28,8 @@
 
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/vdVideoPlayer"
-            android:background="@color/color_light_black" />
+            style="@style/DividerLine"
+            android:layout_below="@id/vdVideoPlayer" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/vdRecyclerView"

@@ -1,8 +1,10 @@
 package com.iwenchaos.koteye.mvp.presenter
 
 import com.iwenchaos.koteye.base.BasePresenter
+import com.iwenchaos.koteye.base.EyeApplication
 import com.iwenchaos.koteye.mvp.contract.VideoContract
 import com.iwenchaos.koteye.mvp.model.bean.HomeInfo
+import com.iwenchaos.koteye.utils.NetworkUtil
 
 /**
  * Created by chaos
@@ -12,7 +14,11 @@ import com.iwenchaos.koteye.mvp.model.bean.HomeInfo
 class VideoPresenter : BasePresenter<VideoContract.View>(), VideoContract.Presenter {
 
 
-    override fun setVideoDetail(itemInfo: HomeInfo.Issue.Item) {
+    override fun setVideoDetail(itemInfo: HomeInfo.Issue.Item?) {
+
+        val playInfo = itemInfo?.data?.playInfo
+        val netType = NetworkUtil.isWifi(EyeApplication.context)
+        checkAttached()
 
     }
 }

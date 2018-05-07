@@ -4,6 +4,7 @@ import android.annotation.TargetApi
 import android.content.res.Configuration
 import android.os.Build
 import android.support.v4.view.ViewCompat
+import android.support.v7.widget.LinearLayoutManager
 import android.transition.Transition
 import android.widget.ImageView
 import com.iwenchaos.koteye.R
@@ -15,8 +16,11 @@ import com.iwenchaos.koteye.mvp.contract.VideoContract
 import com.iwenchaos.koteye.mvp.model.bean.HomeInfo
 import com.iwenchaos.koteye.mvp.presenter.VideoPresenter
 import com.iwenchaos.koteye.toast
+import com.iwenchaos.koteye.ui.adapter.VideoDetailAdapter
+import com.iwenchaos.koteye.utils.StatusBarUtil
 import com.iwenchaos.koteye.utils.WatchHistoryUtils
 import com.orhanobut.logger.Logger
+import com.scwang.smartrefresh.header.MaterialHeader
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
 import com.shuyu.gsyvideoplayer.utils.GSYVideoHelper
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
@@ -45,20 +49,41 @@ class VideoDetailActivity : BaseActivity(), VideoContract.View {
     private var mVideoHelperBuilder: GSYVideoHelper.GSYVideoHelperBuilder? = null
 
     private val mDataFormat by lazy {
-        SimpleDateFormat("yyyyMMddHHmmss")
+        SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINESE)
     }
 
     private var isPlay: Boolean = false
     private var isPause: Boolean = false
+    private var mVideoAdapter: VideoDetailAdapter? = null
 
     override fun layoutId() = R.layout.activity_video_detail
 
     override fun initUi() {
         mPresenter.attachView(this)
+        //状态栏透明和间距处理
+        StatusBarUtil.immersive(this)
+        StatusBarUtil.setPaddingSmart(this, vdVideoPlayer)
         //转场动画
         initTransition()
         //video config
         initVideoConfig()
+
+        mVideoAdapter = VideoDetailAdapter(this, mVideoItemList)
+        mVideoAdapter?.onItemClickListenter = { mPresenter.setVideoDetail(it) }
+        vdRecyclerView.run {
+            layoutManager = LinearLayoutManager(this@VideoDetailActivity)
+            adapter = mVideoAdapter
+        }
+
+        //下拉刷新
+        vdRefreshLayout.run {
+            setEnableHeaderTranslationContent(true)
+            setOnRefreshListener{mPresenter.setVideoDetail(mVideoData!!)}
+            (refreshHeader as MaterialHeader).run {
+                setShowBezierWave(true)
+            }
+            setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
+        }
 
     }
 
@@ -182,7 +207,7 @@ class VideoDetailActivity : BaseActivity(), VideoContract.View {
     }
 
     private fun setVideoInfo() {
-
+        mPresenter.setVideoDetail(mVideoData)
     }
 
 

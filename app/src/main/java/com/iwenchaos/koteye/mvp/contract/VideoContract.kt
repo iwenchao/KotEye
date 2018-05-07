@@ -42,7 +42,9 @@ interface VideoContract {
 
     interface Presenter : IPresenter<View> {
 
-        fun setVideoDetail(itemInfo: HomeInfo.Issue.Item)
+
+
+        fun setVideoDetail(itemInfo: HomeInfo.Issue.Item?)
 
     }
 
