@@ -22,4 +22,5 @@
 
     <dimen name="division_line">0.5dp</dimen>
     <dimen name="tabIndicatorHeight">2dp</dimen>
+    <dimen name="videoHeight">250dp</dimen>
 </resources>

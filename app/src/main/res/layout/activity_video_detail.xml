@@ -8,13 +8,11 @@
     app:srlAccentColor="@color/color_white"
     app:srlEnableHeaderTranslationContent="false"
     app:srlEnableLoadmore="false"
-    app:srlPrimaryColor="@color/colorPrimary"
-    >
+    app:srlPrimaryColor="@color/colorPrimary">
 
     <com.scwang.smartrefresh.header.MaterialHeader
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
+        android:layout_height="wrap_content" />
 
 
     <RelativeLayout
@@ -22,7 +20,24 @@
         android:layout_height="match_parent">
 
 
+        <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+            android:id="@+id/vdVideoPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@color/color_black" />
 
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/vdVideoPlayer"
+            android:background="@color/color_light_black" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/vdRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/vdVideoPlayer" />
 
     </RelativeLayout>
 
