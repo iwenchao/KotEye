@@ -24,6 +24,7 @@ import com.iwenchaos.koteye.utils.StatusBarUtil
 import com.iwenchaos.koteye.utils.WatchHistoryUtils
 import com.orhanobut.logger.Logger
 import com.scwang.smartrefresh.header.MaterialHeader
+import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
 import com.shuyu.gsyvideoplayer.utils.GSYVideoHelper
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
@@ -107,7 +108,7 @@ class VideoDetailActivity : BaseActivity(), VideoContract.View {
     override fun onDestroy() {
         CleanLeakUtils.fixInputMethodManagerLeak(this)
         super.onDestroy()
-//        GSYVideoPlayer.releaseAllVideos()
+        GSYVideoManager.releaseAllVideos()
         mOrientationUtils?.releaseListener()
         mPresenter.detachView()
     }
@@ -283,6 +284,11 @@ class VideoDetailActivity : BaseActivity(), VideoContract.View {
         super.onBackPressed()
         //需要释放视频播放所持有的资源
         mOrientationUtils?.backToProtVideo()
+        if (GSYVideoManager.backFromWindowFull(this)) {
+            return
+        }
+        vdVideoPlayer.setVideoAllCallBack(null)
+        GSYVideoManager.releaseAllVideos()
 
         if (isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) run {
             super.onBackPressed()
