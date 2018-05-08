@@ -70,9 +70,6 @@ class EyeApplication constructor(application: Application,
 
     private fun logger() {
         val formatStrategy = PrettyFormatStrategy.newBuilder()
-                .showThreadInfo(true)
-                .methodCount(3)
-                .methodOffset(5)
                 .tag(EYE_APPLICATION)
                 .build()
         Logger.addLogAdapter(object : AndroidLogAdapter(formatStrategy) {

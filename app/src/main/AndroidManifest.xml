@@ -32,6 +32,7 @@
             />
         <activity android:name=".ui.activity.VideoDetailActivity" />
         <activity android:name=".ui.activity.CategoryDetailActivity" />
+        <activity android:name=".lab.Lab" />
 
         <!-- 配置APP ID -->
         <meta-data android:name="BUGLY_APPID"
