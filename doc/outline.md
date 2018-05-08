@@ -24,6 +24,7 @@
     2. behavior
 11. FragmentPagerAdapter与FragmentStatePagerAdapter
 12. rx中subscribe与observable与Flowable与CompositeSubscriber
+    1. rx中线程切换 [详解](https://blog.csdn.net/u011291205/article/details/73044256)
 13. Android优秀的视频库
     1. Vitamio
     2. GSYVideoPlayer
