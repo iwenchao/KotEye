@@ -1,4 +1,4 @@
-package com.iwenchaos.koteye.lab.rx2;
+package com.iwenchaos.koteye.lab.rx;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -48,13 +48,25 @@ public class Rx2Lab {
                     }
                 })
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .onTerminateDetach();
         Disposable disposable = observable.subscribe(new Consumer<String>() {
             @Override
             public void accept(@NonNull String s) throws Exception {
             }
         });
         comDisposable.add(disposable);
+
+    }
+
+
+    /**
+     * 场景：类似异步之间的进度显示
+     * @方式0 Thread+handler+looper
+     * @方式1 AsyncTask
+     * @方式2 Rx
+     */
+    private void syncProcessAssociate(){
 
     }
 
