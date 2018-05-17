@@ -1,20 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.iwenchaos.koteye.widget.MultipleStatusView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/multipleStatusView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
-    app:emptyView="@layout/empty_view"
-    app:errorView="@layout/error_view"
-    app:loadingView="@layout/loading_view"
-    app:noNetworkView="@layout/no_network_view">
+    android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/hisRecyclerView"
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_title_bg"
+        app:navigationIcon="?attr/homeAsUpIndicator">
+
+        <TextView
+            android:id="@+id/tv_header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="观看记录"
+            android:textColor="@color/color_item_title"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </android.support.v7.widget.Toolbar>
+
+    <com.iwenchaos.koteye.widget.MultipleStatusView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/multipleStatusView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/actionBarHeight" />
+        android:background="@color/backgroundColor"
+        app:emptyView="@layout/empty_view"
+        app:errorView="@layout/error_view"
+        app:loadingView="@layout/loading_view"
+        app:noNetworkView="@layout/no_network_view">
 
-</com.iwenchaos.koteye.widget.MultipleStatusView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/hisRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/actionBarHeight" />
+
+    </com.iwenchaos.koteye.widget.MultipleStatusView>
+
+
+</LinearLayout>

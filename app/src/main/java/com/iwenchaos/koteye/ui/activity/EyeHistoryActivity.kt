@@ -7,6 +7,7 @@ import com.iwenchaos.koteye.base.EyeApplication
 import com.iwenchaos.koteye.constant.Constants
 import com.iwenchaos.koteye.mvp.model.bean.HomeInfo
 import com.iwenchaos.koteye.ui.adapter.EyeHistoryAdapter
+import com.iwenchaos.koteye.utils.StatusBarUtil
 import com.iwenchaos.koteye.utils.WatchHistoryUtils
 import kotlinx.android.synthetic.main.activity_eye_history.*
 import java.util.*
@@ -27,6 +28,13 @@ class EyeHistoryActivity : BaseActivity() {
     override fun layoutId() = R.layout.activity_eye_history
 
     override fun initUi() {
+        //状态栏透明和间距处理
+        StatusBarUtil.darkMode(this)
+        StatusBarUtil.setPaddingSmart(this, toolbar)
+        StatusBarUtil.setPaddingSmart(this, hisRecyclerView)
+        toolbar.setNavigationOnClickListener { finish() }
+
+
         multipleStatusView.showLoading()
 
         eyedAdapter = EyeHistoryAdapter(this, itemEyedList, R.layout.item_eye_history_layout)
