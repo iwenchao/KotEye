@@ -1,7 +1,10 @@
 package com.iwenchaos.koteye.ui.fragment
 
+import android.content.Intent
+import android.view.View
 import com.iwenchaos.koteye.R
 import com.iwenchaos.koteye.base.BaseFragment
+import com.iwenchaos.koteye.ui.activity.VideoDetailActivity
 import kotlinx.android.synthetic.main.fragment_user.*
 
 /**
@@ -42,5 +45,11 @@ class UserFragment : BaseFragment() {
 
     override fun lazyLoad() {
 
+    }
+
+    public fun  toHistory(v:View){
+        Intent(activity,VideoDetailActivity::class.java).run {
+            startActivity(this)
+        }
     }
 }

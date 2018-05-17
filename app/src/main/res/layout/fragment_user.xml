@@ -200,7 +200,8 @@
                     android:layout_height="50dp"
                     android:gravity="center|center_horizontal"
                     android:text="@string/view_history"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:onClick="toHistory"/>
 
                 <TextView
                     android:id="@+id/tv_feedback"
