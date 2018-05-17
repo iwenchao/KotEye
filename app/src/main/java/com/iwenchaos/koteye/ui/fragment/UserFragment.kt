@@ -4,7 +4,7 @@ import android.content.Intent
 import android.view.View
 import com.iwenchaos.koteye.R
 import com.iwenchaos.koteye.base.BaseFragment
-import com.iwenchaos.koteye.ui.activity.VideoDetailActivity
+import com.iwenchaos.koteye.ui.activity.EyeHistoryActivity
 import kotlinx.android.synthetic.main.fragment_user.*
 
 /**
@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_user.*
  * on 2018/5/3. 14:44
  * 文件描述：
  */
-class UserFragment : BaseFragment() {
+class UserFragment : BaseFragment(), View.OnClickListener {
 
 
     private var mTitle: String? = null
@@ -40,6 +40,7 @@ class UserFragment : BaseFragment() {
             }
         }
 
+        tv_watch_history.setOnClickListener(this)
 
     }
 
@@ -47,9 +48,14 @@ class UserFragment : BaseFragment() {
 
     }
 
-    public fun  toHistory(v:View){
-        Intent(activity,VideoDetailActivity::class.java).run {
-            startActivity(this)
+    override fun onClick(p0: View) {
+        when (p0.id) {
+            R.id.tv_watch_history -> {
+                Intent(activity, EyeHistoryActivity::class.java).run {
+                    startActivity(this)
+                }
+            }
         }
     }
+
 }
