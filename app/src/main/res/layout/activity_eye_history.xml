@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.iwenchaos.koteye.widget.MultipleStatusView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/multipleStatusView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    app:emptyView="@layout/empty_view"
+    app:errorView="@layout/error_view"
+    app:loadingView="@layout/loading_view"
+    app:noNetworkView="@layout/no_network_view">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/hisRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/actionBarHeight" />
+
+</com.iwenchaos.koteye.widget.MultipleStatusView>
